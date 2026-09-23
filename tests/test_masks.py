@@ -100,5 +100,3 @@ def test_get_mask_account_invalid(raw_account: int) -> None:
     """Проверка работы функции с различными форматами"""
     with pytest.raises(ValueError):
         get_mask_account(raw_account)
-
-

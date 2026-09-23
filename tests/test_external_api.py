@@ -1,5 +1,6 @@
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
 from src.external_api import transaction_amount_in_rubles  # Замените your_module на имя вашего модуля
 
 
@@ -28,14 +29,8 @@ class TestTransactionAmountInRubles(unittest.TestCase):
 
         self.assertEqual(result, 755.00)  # 10.00 * 75.5 = 755.00
         mock_get.assert_called_once_with(
-            "http://test.url",
-            headers={"apikey": "test_key"},
-            params={
-                       "from": "USD",
-                       "to": "RUB",
-                       "amount": 10.00
-                   })
-
+            "http://test.url", headers={"apikey": "test_key"}, params={"from": "USD", "to": "RUB", "amount": 10.00}
+        )
 
     @patch("requests.get")
     @patch.dict("os.environ", {"EXCHANGE_RATES_API_KEY": "test_key", "BASE_URL": "http://test.url"})
